@@ -13,7 +13,7 @@ module led_driver(
     localparam S_DIGIT_4 = 8'b10011001; 
     localparam S_DIGIT_5 = 8'b10010010; 
     localparam S_DIGIT_6 = 8'b10000010; 
-    localparam S_DIGIT_7 = 8'b11110000; 
+    localparam S_DIGIT_7 = 8'b11111000; 
     localparam S_DIGIT_8 = 8'b10000000; 
     localparam S_DIGIT_9 = 8'b10010000; 
 	localparam BLANK   = 8'b11111111;
@@ -99,13 +99,13 @@ module led_driver(
 				cathode_n <= 0;
 		end
 	end
-	////////////////////	1KHz_CLK_Generator	////////////////
+	////////////////////   1KHz_CLK_Generator	////////////////
 	always @(posedge clk_100mhz) begin
-		if(reset) begin
+		/*if(reset) begin
 			clk_1khz <= 0;
 			divider <= 0;
-		end
-		else if (divider == 49999) begin
+		end*/
+		if (divider == 49999) begin
 			clk_1khz <= ~clk_1khz;
 			divider <= 0;
 		end
@@ -115,5 +115,3 @@ module led_driver(
 		end
 	end
 endmodule
-
-
